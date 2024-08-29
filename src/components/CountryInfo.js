@@ -36,6 +36,7 @@ const CountryInfo = () => {
 
   const { region, languages, translations } = country;
   const languagesList = languages ? Object.values(languages).join(', ') : 'N/A';
+  const translatedOfficialName = translations?.rus?.official || 'N/A';
   const translatedName = translations?.rus?.common || 'N/A';
 
   const handleBackClick = () => {
@@ -48,11 +49,12 @@ const CountryInfo = () => {
       <button className="btn btn-primary mb-3" onClick={handleBackClick}>
         ← Back to list
       </button>
-      <h2>{country.name.common}</h2>
+      <h2>{country.name.official} ({country.name.common})</h2>
       <p><strong>Capital:</strong> {country.capital}</p>
       <p><strong>Region:</strong> {region}</p>
       <p><strong>Languages:</strong> {languagesList}</p>
-      <p><strong>Name in Russian:</strong> {translatedName}</p>
+      <p><strong>Population:</strong> {country.population}</p>
+      <p><strong>Name in Russian:</strong> {translatedOfficialName} ({translatedName})</p>
       <img 
         src={country.flags.svg} 
         alt={`${country.name.common} flag`} 
